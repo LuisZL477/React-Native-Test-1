@@ -1,43 +1,37 @@
 import React from 'react';
-import {TouchableOpacity, View, Text, StyleSheet} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
+import styles from '../src/assets/styles/GeneralStyles';
 
-const styles = StyleSheet.create({
-
-  HomeButton: {
-    width:100,
-    backgroundColor: '#052838',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 15,
-    paddingVertical: 15,
-  },
-  whiteText: {
-    fontSize: 16,
-    color: '#fff', 
-  },
-  linearGradient: {
-    flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderRadius: 5
-  },
-})
-
-
-const HomeScreen = () => {
+const GymApp = () => {
   const navigation = useNavigation();
+
   return (
     <LinearGradient colors={['#24BFBF', '#24BFBF', '#D3F5FF']} style={styles.linearGradient}>
-    <View style={{ flex:1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <TouchableOpacity style={styles.HomeButton} onPress={() => navigation.navigate('Settings')}>
-         <Text style={styles.whiteText}>Ir a Tareas</Text>
-         </TouchableOpacity>
-    </View>
+      
+      {/* Logo */}
+      <View style={styles.logoContainer}>
+        <Image
+          source={require('../src/assets/images/GYM4U.png')}
+          style={{ width: 300, height: 300 }}
+        />    
+      </View>
+
+      {/* Botones */}
+      <View style={styles.transparentButtonsContainer}>
+        <TouchableOpacity style={styles.transparentButton} onPress={() => navigation.navigate('Data')} >
+          <Text style={styles.buttonBlueText}>Empezar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.transparentButton} onPress={() => navigation.navigate('Authentication')}>
+          <Text style={styles.buttonBlueText}>Ya tengo una cuenta</Text>
+        </TouchableOpacity>
+      </View>
+
     </LinearGradient>
   );
 };
 
-export default HomeScreen;
+
+
+export default GymApp;
